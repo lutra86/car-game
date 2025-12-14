@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel Speedster</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <canvas id="gameCanvas" width="400" height="600"></canvas>
+        <div id="ui-layer">
+            <div id="score">SCORE: 0</div>
+            <div id="start-screen">
+                <h1>PIXEL DRIFT</h1>
+                <p>PRESS ARROWS OR TAP TO START</p>
+                <p class="blink">INSERT COIN</p>
+            </div>
+            <div id="game-over" class="hidden">
+                <h1>GAME OVER</h1>
+                <p>SCORE: <span id="final-score">0</span></p>
+                <button id="restart-btn">TRY AGAIN</button>
+            </div>
+        </div>
+        <div class="scanlines"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
