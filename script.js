@@ -53,14 +53,15 @@ let enemies = [];
 let enemySpawnTimer = 0;
 
 // Input
+// Input
 document.addEventListener('keydown', (e) => {
     if (gameOver && e.code === 'Enter') {
         resetGame();
     } else if (!gameRunning) {
-        if (e.code !== 'Space') {
-             gameRunning = true;
-             document.getElementById('start-screen').classList.add('hidden');
-             requestAnimationFrame(gameLoop);
+        // Start game on Enter only if start screen is visible
+        const startScreen = document.getElementById('start-screen');
+        if (!startScreen.classList.contains('hidden') && e.code === 'Enter') {
+             startGame();
         }
     } else {
         if (e.code === 'ArrowLeft' || e.key === 'a') {
@@ -77,9 +78,7 @@ canvas.addEventListener('touchstart', (e) => {
         return;
     }
     if (!gameRunning) {
-        gameRunning = true;
-        document.getElementById('start-screen').classList.add('hidden');
-        requestAnimationFrame(gameLoop);
+        // Prevent starting by just tapping canvas
         return;
     }
     const rect = canvas.getBoundingClientRect();
@@ -90,6 +89,45 @@ canvas.addEventListener('touchstart', (e) => {
         player.lane = 1;
     }
 });
+
+// Menu Functions
+function startGame() {
+    gameRunning = true;
+    document.getElementById('start-screen').classList.add('hidden');
+    requestAnimationFrame(gameLoop);
+}
+
+function showSkins() {
+    document.getElementById('skins-modal').classList.remove('hidden');
+}
+
+function hideSkins() {
+    document.getElementById('skins-modal').classList.add('hidden');
+}
+
+function selectSkin(color) {
+    images.player.src = `car_${color}.png`;
+    
+    // Update UI selection
+    document.querySelectorAll('.skin-option').forEach(option => {
+        option.classList.remove('selected');
+        if (option.dataset.color === color) {
+            option.classList.add('selected');
+        }
+    });
+}
+
+// Event Listeners
+document.getElementById('start-btn').addEventListener('click', startGame);
+document.getElementById('skins-btn').addEventListener('click', showSkins);
+document.getElementById('back-btn').addEventListener('click', hideSkins);
+
+document.querySelectorAll('.skin-option').forEach(option => {
+    option.addEventListener('click', () => {
+        selectSkin(option.dataset.color);
+    });
+});
+
 
 // Restart Button
 document.getElementById('restart-btn').addEventListener('click', () => {
@@ -106,6 +144,7 @@ function resetGame() {
     gameRunning = true;
     document.getElementById('game-over').classList.add('hidden');
     document.getElementById('score').innerText = 'SCORE: 0';
+    document.getElementById('speed').innerText = 'SPEED: ' + speed;
     requestAnimationFrame(gameLoop);
 }
 
@@ -159,7 +198,10 @@ function update() {
             enemies.splice(i, 1);
             score++;
             document.getElementById('score').innerText = 'SCORE: ' + score;
-            if (score % 5 === 0) speed += 0.5;
+            if (score % 20 === 0) {
+                 speed += 0.5;
+                 document.getElementById('speed').innerText = 'SPEED: ' + speed;
+            }
         }
     }
 }
