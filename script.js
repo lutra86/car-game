@@ -10,7 +10,7 @@ const LANE_RIGHT = LANE_WIDTH + LANE_WIDTH / 2;
 let score = 0;
 let gameOver = false;
 let gameRunning = false;
-let speed = 5;
+let speed = 10;
 
 // Load Images
 const images = {
@@ -138,7 +138,7 @@ document.getElementById('restart-btn').addEventListener('click', () => {
 
 function resetGame() {
     score = 0;
-    speed = 6;
+    speed = 10;
     enemies = [];
     gameOver = false;
     gameRunning = true;
