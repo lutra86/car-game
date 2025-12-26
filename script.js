@@ -10,7 +10,7 @@ const LANE_RIGHT = LANE_WIDTH + LANE_WIDTH / 2;
 let score = 0;
 let gameOver = false;
 let gameRunning = false;
-let speed = 10;
+let speed = 5;
 
 // Load Images
 const images = {
@@ -138,7 +138,7 @@ document.getElementById('restart-btn').addEventListener('click', () => {
 
 function resetGame() {
     score = 0;
-    speed = 10;
+    speed = 5;
     enemies = [];
     gameOver = false;
     gameRunning = true;
@@ -218,7 +218,7 @@ function draw() {
     
     // Center line
     ctx.fillStyle = '#666'; 
-    let offset = (Date.now() / 2 * speed) % 80;
+    let offset = (Date.now() / 10 * speed) % 80;
     for (let i = -1; i < SCREEN_HEIGHT / 80 + 1; i++) {
          ctx.fillRect(SCREEN_WIDTH / 2 - 5, i * 80 + offset, 10, 40);
     }
