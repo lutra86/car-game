@@ -1,0 +1,233 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+    background-color: #111;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+    overflow: hidden;
+}
+
+.game-container {
+    position: relative;
+    width: 480px; /* Scaling up visually */
+    height: 720px;
+    border: 4px solid #555;
+    background-color: #333;
+    box-shadow: 0 0 30px rgba(0,0,0,0.8);
+}
+
+canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    image-rendering: pixelated; 
+}
+
+#ui-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 20;
+}
+
+#score {
+    padding: 15px;
+    text-shadow: 2px 2px #000;
+    font-size: 20px;
+    z-index: 21;
+}
+
+#speed {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 15px;
+    text-shadow: 2px 2px #000;
+    font-size: 20px;
+    z-index: 21;
+}
+
+#start-screen, #game-over {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 30px;
+    border: 4px solid #fff;
+    width: 80%;
+    box-shadow: 0 0 20px #000;
+    pointer-events: auto;
+    z-index: 30;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #ff0055;
+    text-shadow: 2px 2px #00ffff;
+}
+
+.menu-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.menu-btn {
+    background: transparent;
+    border: 3px solid #fff;
+    color: #fff;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 18px;
+    padding: 15px 30px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    width: 250px;
+    text-shadow: 2px 2px #000;
+    box-shadow: 4px 4px 0 #000;
+    pointer-events: auto;
+}
+
+.menu-btn:hover {
+    background: #fff;
+    color: #000;
+    transform: scale(1.05);
+}
+
+#start-btn {
+    border-color: #0f0;
+    color: #0f0;
+}
+
+#start-btn:hover {
+    background: #0f0;
+    color: #000;
+}
+
+#skins-btn {
+    border-color: #0ff;
+    color: #0ff;
+}
+
+#skins-btn:hover {
+    background: #0ff;
+    color: #000;
+}
+
+#restart-btn {
+    background: transparent;
+    border: 2px solid #ffff00;
+    color: #ffff00;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 16px;
+    padding: 10px 20px;
+    margin-top: 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+    animation: blinker 1s linear infinite;
+    pointer-events: auto;
+}
+
+#restart-btn:hover {
+    background: #ffff00;
+    color: #000;
+}
+
+/* Skins Modal */
+#skins-modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    pointer-events: auto; /* CRITICAL FIX */
+}
+
+#skins-modal h2 {
+    color: #ff0055;
+    text-shadow: 3px 3px #00ffff;
+    margin-bottom: 40px;
+    font-size: 28px;
+}
+
+.skins-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.skin-option {
+    border: 4px solid #444;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: #222;
+}
+
+.skin-option:hover {
+    transform: scale(1.1);
+    border-color: #fff;
+}
+
+.skin-option.selected {
+    border-color: #ff0055;
+    box-shadow: 0 0 15px #ff0055;
+    background: #333;
+}
+
+.skin-option img {
+    width: 50px;
+    image-rendering: pixelated;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.blink {
+    animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+    50% { opacity: 0; }
+}
+
+.scanlines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,0),
+        rgba(255,255,255,0) 50%,
+        rgba(0,0,0,0.15) 50%,
+        rgba(0,0,0,0.15)
+    );
+    background-size: 100% 4px;
+    pointer-events: none;
+    opacity: 0.7;
+}

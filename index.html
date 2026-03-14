@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel Speedster</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <canvas id="gameCanvas" width="400" height="600"></canvas>
+        <div id="ui-layer">
+            <div id="score">SCORE: 0</div>
+            <div id="speed">SPEED: 5</div>
+            <div id="start-screen">
+                <h1>PIXEL DRIFT</h1>
+                <div class="menu-container">
+                    <button id="start-btn" class="menu-btn">START GAME</button>
+                    <button id="skins-btn" class="menu-btn">SKINS</button>
+                </div>
+            </div>
+            
+            <div id="skins-modal" class="hidden">
+                <h2>SELECT CAR</h2>
+                <div class="skins-grid">
+                    <div class="skin-option selected" data-color="yellow">
+                        <img src="car_yellow.png" alt="Yellow Car">
+                    </div>
+                    <div class="skin-option" data-color="blue">
+                        <img src="car_blue.png" alt="Blue Car">
+                    </div>
+                    <div class="skin-option" data-color="green">
+                        <img src="car_green.png" alt="Green Car">
+                    </div>
+                    <div class="skin-option" data-color="red">
+                        <img src="car_red.png" alt="Red Car">
+                    </div>
+                </div>
+                <button id="back-btn" class="menu-btn">BACK</button>
+            </div>
+            <div id="game-over" class="hidden">
+                <h1>GAME OVER</h1>
+                <p>SCORE: <span id="final-score">0</span></p>
+                <button id="restart-btn">TRY AGAIN</button>
+            </div>
+        </div>
+        <div class="scanlines"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
